@@ -1,0 +1,7 @@
+{
+	"files" :[
+			{
+				"readyfilename": "test.ready"
+			}
+	]
+}
