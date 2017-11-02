@@ -1,0 +1,50 @@
+{
+  "objects": [
+    {
+      "filePath": "s3://srinivas-sampledata/cars.csv",
+      "name": "S3InputNode",
+      "id": "DataNodeId_Q2Vdz",
+      "type": "S3DataNode"
+    },
+    {
+      "resourceRole": "datapipeline_ec2_s3",
+      "role": "DataPipelineDefaultRole",
+      "instanceType": "m3.large",
+      "name": "MyEC2Resource",
+      "keyPair": "ireland-keypair",
+      "id": "ResourceId_sb4on",
+      "type": "Ec2Resource",
+      "terminateAfter": "30 Minutes"
+    },
+    {
+      "output": {
+        "ref": "DataNodeId_MEPeE"
+      },
+      "input": {
+        "ref": "DataNodeId_Q2Vdz"
+      },
+      "name": "DefaultCopyActivity2",
+      "runsOn": {
+        "ref": "ResourceId_sb4on"
+      },
+      "id": "CopyActivityId_CDmil",
+      "type": "CopyActivity"
+    },
+    {
+      "filePath": "s3://srinivas-sampledata/test_folder/cars.csv",
+      "name": "S2OutputNode",
+      "id": "DataNodeId_MEPeE",
+      "type": "S3DataNode"
+    },
+    {
+      "failureAndRerunMode": "CASCADE",
+      "resourceRole": "datapipeline_ec2_s3",
+      "role": "DataPipelineDefaultRole",
+      "pipelineLogUri": "s3://srinivas-sampledata/",
+      "scheduleType": "ONDEMAND",
+      "name": "Default",
+      "id": "Default"
+    }
+  ],
+  "parameters": []
+}
